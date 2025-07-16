@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import Wrapper from "@/components/Wrapper";
-import { NoteModal } from "../components/NoteModal";
+import { NoteModal } from "@/components/NoteModal";
 
 type Note = {
   title: string;
@@ -24,12 +24,10 @@ export default function Home() {
   const handleSave = () => {
     if (title.trim() || description.trim()) {
       if (editingIndex !== null) {
-        // Update existing note
         const updatedNotes = [...notes];
         updatedNotes[editingIndex] = { title, description };
         setNotes(updatedNotes);
       } else {
-        // Add new note
         setNotes([...notes, { title, description }]);
       }
     }
