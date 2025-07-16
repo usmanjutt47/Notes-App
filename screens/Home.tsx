@@ -67,7 +67,13 @@ export default function Home() {
           <Text style={styles.buttonText}>Create Note</Text>
         </TouchableOpacity>
 
-        <ScrollView style={{ marginTop: "5%" }}>
+        <ScrollView
+          style={{
+            marginTop: "5%",
+            backgroundColor: "red",
+            marginBottom: -50,
+          }}
+        >
           {notes.map((note, idx) => (
             <View key={idx} style={styles.noteCard}>
               <TouchableOpacity
@@ -118,6 +124,7 @@ export const styles = StyleSheet.create({
     width: "95%",
     height: "100%",
     alignSelf: "center",
+    flex: 1,
   },
   button: {
     backgroundColor: "#007bff",
