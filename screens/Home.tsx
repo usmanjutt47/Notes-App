@@ -8,11 +8,8 @@ import {
 import React, { useState } from "react";
 import Wrapper from "@/components/Wrapper";
 import { NoteModal } from "@/components/NoteModal";
-
-type Note = {
-  title: string;
-  description: string;
-};
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Note } from "@/types";
 
 export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -54,7 +51,9 @@ export default function Home() {
   return (
     <Wrapper>
       <View style={styles.container}>
-        <Text>Create your Notes</Text>
+        <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+          Create Your Notes
+        </Text>
         <TouchableOpacity
           style={styles.button}
           activeOpacity={0.8}
@@ -70,15 +69,32 @@ export default function Home() {
 
         <ScrollView style={{ marginTop: "5%" }}>
           {notes.map((note, idx) => (
-            <TouchableOpacity
-              key={idx}
-              style={styles.noteCard}
-              activeOpacity={0.7}
-              onPress={() => handleEdit(idx)}
-            >
-              <Text style={styles.noteTitle}>{note.title}</Text>
-              <Text style={styles.noteDescription}>{note.description}</Text>
-            </TouchableOpacity>
+            <View key={idx} style={styles.noteCard}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => handleEdit(idx)}
+                style={{ flex: 1 }}
+              >
+                <Text style={styles.noteTitle}>{note.title}</Text>
+                <Text style={styles.noteDescription}>{note.description}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  const updatedNotes = notes.filter((_, i) => i !== idx);
+                  setNotes(updatedNotes);
+                }}
+                style={{
+                  position: "absolute",
+                  top: 8,
+                  right: 8,
+                  padding: 4,
+                  backgroundColor: "#ffffffff",
+                  borderRadius: 14,
+                }}
+              >
+                <MaterialIcons name="delete" size={24} color="#ff4d4f" />
+              </TouchableOpacity>
+            </View>
           ))}
         </ScrollView>
 

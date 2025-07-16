@@ -1,3 +1,4 @@
+import { NoteModalProps } from "@/types";
 import React from "react";
 import {
   Modal,
@@ -7,16 +8,6 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-
-export type NoteModalProps = {
-  visible: boolean;
-  title: string;
-  description: string;
-  onTitleChange: (text: string) => void;
-  onDescriptionChange: (text: string) => void;
-  onCancel: () => void;
-  onSave: () => void;
-};
 
 export function NoteModal({
   visible,
